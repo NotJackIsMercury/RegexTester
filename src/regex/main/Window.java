@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.TextComponent;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
@@ -40,8 +41,9 @@ public class Window extends JFrame {
 	private DocumentListener listener = new DocumentListener() {
 		public void changedUpdate(DocumentEvent de) {
 			try {
+				//final JTextComponent i = input.getComponent();
+				final JTextComponent o = output.getComponent();
 				String inputText = input.getComponent().getText();
-				JTextComponent o = output.getComponent();
 				Matcher matcher = Pattern.compile("(" + regex.getText() + ")").matcher(inputText);
 				
 				o.setText("");
