@@ -45,7 +45,7 @@ public class RegexFilter extends DocumentFilter {
 	}
 
 	public void insertString(FilterBypass fb, int i, String s, AttributeSet as) throws BadLocationException {
-		super.insertString(fb, i, s, as);
+		super.insertString(fb, i, clearLineBreaks(s), as);
 		
 		textChanged();
 	}
@@ -57,9 +57,13 @@ public class RegexFilter extends DocumentFilter {
 	}
 	
 	public void replace(FilterBypass fb, int i1, int i2, String s, AttributeSet as) throws BadLocationException {
-		super.replace(fb, i1, i2, s, as);
+		super.replace(fb, i1, i2, clearLineBreaks(s), as);
 		
 		textChanged();
+	}
+
+	String clearLineBreaks(String s) {
+		return s.replace("\n", "");
 	}
 	
 	void textChanged() {
